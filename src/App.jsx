@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   // ===== Use State Variables =====
   const [tasks, setTasks] = useState([
-    {text: "Project 1", completed: false},
+    { text: "Project 1", completed: false},
     { text: "Laundry", completed: false },
     { text: "Walk Dogs", completed: false },
     { text: "clean room", completed: false }
@@ -20,8 +20,20 @@ function App() {
     }
     setInputValue("");
   };
+
   const handleDelete = (indexToDelete) => {
     setTasks(tasks.filter((_, index) => index !== indexToDelete));
+  };
+
+  const handleToggle = (indexToToggle) => {
+    setTasks(
+      tasks.map((currentTask, currentTaskIndex) =>
+        (currentTaskIndex === indexToToggle)
+          ? {...currentTask, completed: !currentTask.completed}
+          : currentTask
+      )
+    );
+    console.log(tasks);
   };
 
   // ==== JSX that gets returned =====
@@ -51,6 +63,13 @@ function App() {
             >
               🗑️
             </button>
+            <input
+              type="checkbox"
+              checked={tasks.completed}
+              onChange={() => handleToggle(index)}
+            >
+
+            </input>
           </li>
         ))}
       </ul>
