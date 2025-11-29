@@ -56,7 +56,7 @@ function App() {
       <ul className="task-list">
         {tasks.map((task, index) => (
           <li key={index} className="task-item">
-            <span className="task-text">{task.text}</span>
+            <span className={task.completed ? "task-text complete" : "task-text"}>{task.text}</span>
             <button
               className="delete-button"
               onClick={() => handleDelete(index)}
@@ -65,7 +65,7 @@ function App() {
             </button>
             <input
               type="checkbox"
-              checked={tasks.completed}
+              checked={task.completed}
               onChange={() => handleToggle(index)}
             >
 
